@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oleksandr Ryshkov — CV</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --accent: #2b6cb0;
+            --light: #f7fafc;
+            --gray: #4a5568;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #edf2f7;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 50px 40px;
+            position: relative;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        .contact-bar a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .contact-bar a:hover { opacity: 1; text-decoration: underline; }
+        .actions {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        .btn:hover { background: rgba(255,255,255,0.35); }
+        main { padding: 40px; }
+        section { margin-bottom: 35px; }
+        h2 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 6px;
+            margin-bottom: 18px;
+            display: inline-block;
+        }
+        .profile {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--gray);
+        }
+        .job {
+            margin-bottom: 24px;
+            padding-left: 16px;
+            border-left: 3px solid var(--border);
+            transition: border-color 0.2s;
+        }
+        .job:hover { border-left-color: var(--accent); }
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .job-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.05rem;
+        }
+        .job-meta {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+        .job-position {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        ul { list-style: none; padding-left: 0; }
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .skill-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 14px 18px;
+            border-left: 3px solid var(--accent);
+        }
+        .skill-card strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+        .skill-card span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        .lang-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .lang-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .lang-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 120px;
+        }
+        .certs { display: flex; flex-wrap: wrap; gap: 10px; }
+        .cert-tag {
+            background: var(--light);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .interests {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        footer {
+            background: #f7fafc;
+            padding: 20px 40px;
+            font-size: 0.75rem;
+            color: #a0aec0;
+            border-top: 1px solid var(--border);
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; margin: 0; border-radius: 0; }
+            .btn { display: none; }
+            header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+        @media (max-width: 640px) {
+            header { padding: 30px 20px; }
+            header h1 { font-size: 1.8rem; }
+            main { padding: 24px; }
+            .job-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="actions">
+                <button class="btn" onclick="window.print()">🖨 Drukuj / Zapisz PDF</button>
+            </div>
+            <h1>Oleksandr Ryshkov</h1>
+            <div class="subtitle">Ratownik medyczny (Feldszer) | Student pielęgniarstwa | Sanitariusz</div>
+            <div class="contact-bar">
+                <span>📍 Sulejówek, ul. Szklarniowa 102, 05-070</span>
+                <a href="tel:+48796895704">📞 +48 796 895 704</a>
+                <a href="mailto:graal@int.pl">✉ graal@int.pl</a>
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <h2>Profil zawodowy</h2>
+                <p class="profile">
+                    Doświadczony ratownik medyczny (feldszer) z 2000 roku praktyki w ratownictwie medycznym, zarówno w warunkach klinicznych, jak i w terenie (motocykl reanimacyjny). 
+                    Pracowałem w renomowanych placówkach medycznych w Kijowie i Symferopolu, zdobywając szeroką wiedzę i praktykę w działaniach ratunkowych, opiece przedszpitalnej i transporcie pacjentów. 
+                    W Polsce od września 2022 roku kontynuuję pracę w ochronie zdrowia jako sanitariusz w Państwowym Instytucie Medycznym MSWiA (SOR) oraz asystent pielęgniarki w Warszawskim Centrum Zdrowia. 
+                    Równolegle kończę ostatni rok studiów licencjackich na kierunku pielęgniarstwo w Akademii WSEI (planowane ukończenie 2026).
+                </p>
+            </section>
+
+            <section>
+                <h2>Doświadczenie zawodowe</h2>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Państwowy Instytut Medyczny MSWiA — SOR</span>
+                        <span class="job-meta">od września 2022 – obecnie</span>
+                    </div>
+                    <div class="job-position">Sanitariusz</div>
+                    <ul>
+                        <li>Praca na SOR (Szpitalny Oddział Ratunkowy)</li>
+                        <li>Asysta przy procedurach medycznych</li>
+                        <li>Obsługa specjalistycznego sprzętu medycznego</li>
+                        <li>Monitorowanie stanu zdrowia pacjentów</li>
+                        <li>Pomiar parametrów życiowych</li>
+                        <li>Prowadzenie dokumentacji medycznej</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Warszawskie Centrum Zdrowia</span>
+                        <span class="job-meta">od września 2022 – obecnie</span>
+                    </div>
+                    <div class="job-position">Asystent pielęgniarki</div>
+                    <ul>
+                        <li>Wsparcie pielęgniarki w codziennej opiece nad pacjentami</li>
+                        <li>Wykonywanie zabiegów pielęgniarskich pod nadzorem</li>
+                        <li>Opieka nad pacjentami w przychodni</li>
+                        <li>Podawanie leków</li>
+                        <li>Opatrywanie ran, unieruchamianie złamań, tamowanie krwotoków</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Prywatna klinika „Borys” — Kijów</span>
+                        <span class="job-meta">04.2004 – 06.2017</span>
+                    </div>
+                    <div class="job-position">Feldszer (pogotowie ratunkowe, motocykl reanimacyjny)</div>
+                    <ul>
+                        <li>Działania ratunkowe w terenie na motocyklu reanimacyjnym</li>
+                        <li>Szybka ocena stanu zdrowia pacjenta</li>
+                        <li>Podejmowanie decyzji w sytuacjach nagłych</li>
+                        <li>Triaż i wstępna ocena stanu pacjenta</li>
+                        <li>Zabiegi przeciwwstrząsowe</li>
+                        <li>Opieka nad pacjentem w trakcie transportu</li>
+                        <li>Farmakoterapia podstawowa</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Szpital pogotowia ratunkowego — Symferopol</span>
+                        <span class="job-meta">03.2000 – 03.2004</span>
+                    </div>
+                    <div class="job-position">Feldszer (pogotowie ratunkowe)</div>
+                    <ul>
+                        <li>Praca w zespole ratowniczym</li>
+                        <li>Udzielanie pierwszej pomocy i świadczeń zdrowotnych</li>
+                        <li>Obsługa specjalistycznego sprzętu ratunkowego</li>
+                        <li>Bieżąca kontrola wyposażenia zespołu ratowniczego</li>
+                        <li>Uczestnictwo w akcjach ratunkowych</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Wykształcenie</h2>
+                <div class="job" style="border-left-color: var(--accent);">
+                    <div class="job-header">
+                        <span class="job-title">Akademia WSEI w Lublinie</span>
+                        <span class="job-meta">2023 – 2026 (w trakcie)</span>
+                    </div>
+                    <div class="job-position">Studia licencjackie — Pielęgniarstwo (ostatni rok)</div>
+                    <ul>
+                        <li>Planowane ukończenie: 2026</li>
+                    </ul>
+                </div>
+                <div class="job" style="border-left-color: var(--accent);">
+                    <div class="job-header">
+                        <span class="job-title">Międzyregionalny Instytut Rozwoju Społecznego im. Nikołajewa „Otwarty Międzynarodowy Uniwersytet Rozwoju Społecznego”</span>
+                        <span class="job-meta">2006 – 2008</span>
+                    </div>
+                    <div class="job-position">Wykształcenie wyższe — Specjalista</div>
+                </div>
+                <div class="job" style="border-left-color: var(--accent);">
+                    <div class="job-header">
+                        <span class="job-title">Krymska Akademia Medyczna — Wydział Medyczny</span>
+                        <span class="job-meta">1997 – 2000</span>
+                    </div>
+                    <div class="job-position">Feldszer (Ratownik medyczny)</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Obszary specjalizacji</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <strong>Medycyna ratunkowa i pierwsza pomoc</strong>
+                        <span>Działania ratunkowe, stany nagłe, opieka przedszpitalna</span>
+                    </div>
+                    <div class="skill-card">
+                        <strong>Diagnostyka podstawowa pacjenta</strong>
+                        <span>Ocena parametrów życiowych, triaż, szybka ocena stanu zdrowia</span>
+                    </div>
+                    <div class="skill-card">
+                        <strong>Procedury medyczne</strong>
+                        <span>Iniekcje, opatrunki, pomiar parametrów życiowych, zabiegi przeciwwstrząsowe</span>
+                    </div>
+                    <div class="skill-card">
+                        <strong>Opieka ambulatoryjna</strong>
+                        <span>Opieka nad pacjentami w przychodni i w trakcie transportu</span>
+                    </div>
+                    <div class="skill-card">
+                        <strong>Sprzęt medyczny</strong>
+                        <span>Obsługa specjalistycznego sprzętu ratunkowego i medycznego</span>
+                    </div>
+                    <div class="skill-card">
+                        <strong>Dokumentacja medyczna</strong>
+                        <span>Prowadzenie dokumentacji pacjenta, kontrola wyposażenia zespołu ratowniczego</span>
+                    </div>
+                    <div class="skill-card">
+                        <strong>Komunikacja kryzysowa</strong>
+                        <span>Przeprowadzanie wywiadu z pacjentem, podtrzymanie komunikacji w sytuacji kryzysowej</span>
+                    </div>
+                    <div class="skill-card">
+                        <strong>Bezpieczeństwo</strong>
+                        <span>Ocena miejsca zdarzenia, przeciwdziałanie zakażeniom, posługiwanie się sprzętem ochrony osobistej</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Kompetencje miękkie</h2>
+                <div class="certs">
+                    <span class="cert-tag">Komunikatywność</span>
+                    <span class="cert-tag">Wysoka empatia</span>
+                    <span class="cert-tag">Odporność na stres</span>
+                    <span class="cert-tag">Cierpliwość</span>
+                    <span class="cert-tag">Zaangażowanie</span>
+                    <span class="cert-tag">Etyka pracy</span>
+                    <span class="cert-tag">Samodzielność</span>
+                    <span class="cert-tag">Praca w zespole</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Języki obce</h2>
+                <table class="lang-table">
+                    <tr><td>Rosyjski</td><td>Ojczysty</td></tr>
+                    <tr><td>Ukraiński</td><td>B2 – średniozaawansowany</td></tr>
+                    <tr><td>Polski</td><td>Komunikatywny</td></tr>
+                    <tr><td>Angielski</td><td>Podstawowy</td></tr>
+                </table>
+            </section>
+
+            <section>
+                <h2>Zainteresowania</h2>
+                <p class="interests">
+                    Spędzanie czasu z rodziną, podróże, sport, literatura kryminalna, wycieczki wysokogórskie.
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE.
+        </footer>
+    </div>
+</body>
+</html>
